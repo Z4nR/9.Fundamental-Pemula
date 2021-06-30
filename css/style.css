@@ -1,0 +1,164 @@
+/*id*/
+#form {
+    flex-grow: 6;
+    border-radius: 8px;
+    background-color: #F8F9FA;
+}
+#list {
+    flex-grow: 4;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+}
+
+/*class*/
+.container {
+    display: flex;
+    width: auto;
+    height: auto;
+    background-color: rgb(196, 225, 248);
+}
+.box {
+    flex-grow: 1;
+    margin: 16px;
+    padding: 16px;
+}
+.book-list {
+    flex-grow: 1;
+    margin: 0px 10px;
+    border-radius: 8px;
+    background-color: #F8F9FA;
+    padding: 16px;
+}
+.shadow {
+    box-shadow: 0 5px 10px rgba(154, 160, 185, .05), 0 15px 40px rgba(166, 173, 201, .2);
+}
+
+.btn-submit {
+    border: none;
+    border-radius: 10px;
+    padding: 8px 12px;
+    border:2px solid #05a3ff;
+    color: black;
+    margin-top: 5px;
+    align-self: flex-end;
+    cursor: pointer;
+}
+.btn-submit:hover{
+    background: #05a3ff;
+    color: white;
+}
+
+input[type=text],
+input[type=number],
+.btn-submit:focus{
+    outline: none;
+}
+
+input[type=text],
+input[type=number] {
+    background: #F5F1FF;
+    border: 2px solid #05a3ff;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: medium;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+
+.form-data {
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    height: auto;
+    border-radius: 16px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    margin-bottom: 4px;
+    font-size: 18;
+    font-weight: lighter;
+}
+.form-title {
+    margin: auto 0;
+}
+
+.item > .inner h2 {
+    margin-bottom: unset;
+}
+.item > .inner p {
+    margin-top: 5px;
+}
+
+/*tag*/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+}
+
+footer {
+    font-style: italic;
+    text-align: center;
+    width: auto;
+    padding: 20px;
+    background-color: whitesmoke;
+}
+
+h2 {
+    margin-bottom: unset;
+    text-align: center;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+/*media query*/
+@media screen and (min-width: 901px) {
+    #unread {
+        margin-bottom: 5px;
+        margin-right: 0px;
+    }
+    #read {
+        margin-top: 5px;
+        margin-right: 0px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .container{
+        flex-direction: column;
+        flex-grow: 1;
+    }
+    .inner-list{
+        width: 50%;
+    }
+    #list{
+        flex-direction: row;
+    }
+    #unread {
+    margin: 0px 5px 10px 0px;
+    }
+    #read {
+    margin: 0px 0px 10px 5px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #list{
+        flex-direction: column;
+    }
+    .inner-list{
+        width: auto;
+    }
+    #unread{        
+        margin: 5px 0px;
+    }
+    #read{        
+        margin: 5px 0px;
+    }
+}
