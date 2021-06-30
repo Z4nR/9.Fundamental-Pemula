@@ -1,6 +1,7 @@
 const LIST_BOOK_ID = "book";
 
 function addBook() {
+
     const listBook = document.getElementById(LIST_BOOK_ID);
 
     const bookName = document.getElementById("book-name").value;
@@ -15,6 +16,7 @@ function addBook() {
         const book = makeListBook();
         listBook.append(book);
     }
+    
 }
 
 function makeListBook() {
