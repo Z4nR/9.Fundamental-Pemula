@@ -1,4 +1,4 @@
-const LIST_BOOK_ID = "book";
+const LIST_BOOK_ID = "unread-book";
 
 function addBook() {
 
@@ -16,7 +16,7 @@ function addBook() {
         const book = makeListBook();
         listBook.append(book);
     }
-    
+
 }
 
 function makeListBook() {
