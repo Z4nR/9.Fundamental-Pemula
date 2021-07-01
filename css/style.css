@@ -16,7 +16,7 @@
     display: flex;
     width: auto;
     height: auto;
-    background-color: rgb(196, 225, 248);
+    flex: 1;
 }
 .box {
     flex-grow: 1;
@@ -29,6 +29,7 @@
     border-radius: 8px;
     background-color: #F8F9FA;
     padding: 16px;
+    overflow: scroll;
 }
 .shadow {
     box-shadow: 0 5px 10px rgba(154, 160, 185, .05), 0 15px 40px rgba(166, 173, 201, .2);
@@ -87,7 +88,7 @@ input[type=number] {
 }
 
 .item {
-    border-radius: 16px;
+    border-radius: 10px;
     margin-top: 16px;
     padding: 12px 24px 12px 24px;
     background: white;
@@ -95,10 +96,12 @@ input[type=number] {
     align-items: center;
 }
 .item > .inner h3 {
+    margin-top: 5px;
     margin-bottom: unset;
 }
 .item > .inner p {
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .title-box {
@@ -110,7 +113,10 @@ input[type=number] {
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
-    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(196, 225, 248);
 }
 
 footer {
@@ -132,10 +138,12 @@ footer {
     #unread {
         margin-bottom: 5px;
         margin-right: 0px;
+        height: 245px;
     }
     #read {
         margin-top: 5px;
         margin-right: 0px;
+        height: 245px;
     }
 }
 
@@ -147,14 +155,23 @@ footer {
     .inner-list{
         width: 50%;
     }
+    #form{
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+        flex-grow: 1;
+    }
     #list{
         flex-direction: row;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
     #unread {
-    margin: 0px 5px 10px 0px;
+    margin: 0px 5px 5px 0px;
+    height: 168px;
     }
     #read {
-    margin: 0px 0px 10px 5px;
+    margin: 0px 0px 5px 5px;
+    height: 168px;
     }
 }
 
@@ -167,8 +184,10 @@ footer {
     }
     #unread{        
         margin: 5px 0px;
+        height: 200px;
     }
     #read{        
         margin: 5px 0px;
+        height: 200px;
     }
 }
