@@ -21,8 +21,8 @@ function addBook() {
 
 function makeListBook() {
     
-    const bookTitle = document.createElement("h2");
-    bookTitle.innerText = "ZUlham Petualang";
+    const bookTitle = document.createElement("h3");
+    bookTitle.innerText = "Zulham Petualang";
 
     const bookAuthor = document.createElement("p");
     bookAuthor.innerText = "Zulham Ari";

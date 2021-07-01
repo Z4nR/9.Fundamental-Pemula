@@ -86,30 +86,40 @@ input[type=number] {
     margin: auto 0;
 }
 
-.item > .inner h2 {
+.item {
+    border-radius: 16px;
+    margin-top: 16px;
+    padding: 12px 24px 12px 24px;
+    background: white;
+    display: flex;
+    align-items: center;
+}
+.item > .inner h3 {
     margin-bottom: unset;
 }
 .item > .inner p {
     margin-top: 5px;
 }
 
+.title-box {
+    margin-bottom: unset;
+    text-align: center;
+}
+
 /*tag*/
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
+    min-height: 100%;
 }
 
 footer {
+    margin-top: auto;
     font-style: italic;
     text-align: center;
     width: auto;
     padding: 20px;
     background-color: whitesmoke;
-}
-
-h2 {
-    margin-bottom: unset;
-    text-align: center;
 }
 
 ::-webkit-scrollbar {
