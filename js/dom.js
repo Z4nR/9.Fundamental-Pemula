@@ -4,21 +4,22 @@ function addBook() {
 
     const listBook = document.getElementById(LIST_BOOK_ID);
 
+    const date = new Date().getTime();
+    const bookId = `BOOK-${date}`;
     const bookName = document.getElementById("book-name").value;
     const bookAuthor = document.getElementById("book-author").value;
     const bookYear = document.getElementById("book-year").value;
 
-    console.log("book name " + bookName);
-    console.log("book author " + bookAuthor);
-    console.log("book year " + bookYear);
-
-    const book = makeListBook(bookName, bookAuthor, bookYear);
+    const book = makeListBook(bookId, bookName, bookAuthor, bookYear);
     listBook.append(book);
 
 }
 
-function makeListBook(title, author, year, isCompleted) {
+function makeListBook(id, title, author, year, isCompleted) {
     
+    const bookId = document.createElement("h6");
+    bookId.innerText = id;
+
     const bookTitle = document.createElement("h3");
     bookTitle.innerText = title;
 
@@ -30,7 +31,7 @@ function makeListBook(title, author, year, isCompleted) {
 
     const textContainer = document.createElement("div");
     textContainer.classList.add("inner")
-    textContainer.append(bookTitle, bookAuthor, bookYear);
+    textContainer.append(bookId, bookTitle, bookAuthor, bookYear);
 
     const container = document.createElement("div");
     container.classList.add("item", "shadow")

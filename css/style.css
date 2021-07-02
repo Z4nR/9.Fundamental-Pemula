@@ -34,6 +34,8 @@
 .list-container {
     height: 100%;
     overflow: scroll;
+    cursor: pointer;
+    user-select: none;
 }
 .list-item {
     margin-left: 5px;
@@ -115,6 +117,10 @@ input[type=number] {
     align-items: center;
 }
 .item > .inner h3 {
+    margin-top: 5px;
+    margin-bottom: unset;
+}
+.item > .inner h6 {
     margin-top: 5px;
     margin-bottom: unset;
 }
