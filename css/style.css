@@ -28,8 +28,15 @@
     margin: 0px 10px;
     border-radius: 8px;
     background-color: #F8F9FA;
-    padding: 16px;
+    padding: 10px;
+    overflow: hidden;
+}
+.list-container {
+    height: 100%;
     overflow: scroll;
+}
+.list-item {
+    margin-left: 5px;
 }
 .shadow {
     box-shadow: 0 5px 10px rgba(154, 160, 185, .05), 0 15px 40px rgba(166, 173, 201, .2);
@@ -82,9 +89,21 @@ input[type=number] {
     margin-bottom: 4px;
     font-size: 18;
     font-weight: lighter;
+    color: cornflowerblue;
 }
 .form-title {
     margin: auto 0;
+}
+
+.checkbox {
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+}
+.checkbox label {
+    color: cornflowerblue;
+    font-weight: lighter;
+    margin-right: 10px;
 }
 
 .item {
@@ -107,6 +126,7 @@ input[type=number] {
 .title-box {
     margin-bottom: unset;
     text-align: center;
+    margin-top: 5px;
 }
 
 /*tag*/
@@ -120,7 +140,7 @@ body {
 }
 
 footer {
-    margin-top: auto;
+    margin-top: 5px;
     font-style: italic;
     text-align: center;
     width: auto;
@@ -165,13 +185,15 @@ footer {
         padding-top: 5px;
         padding-bottom: 5px;
     }
+    .book-list{
+        height: 223px;
+        padding: 10px 10px 5px;
+    }
     #unread {
-    margin: 0px 5px 5px 0px;
-    height: 168px;
+    margin: 0px 5px 0px 0px;
     }
     #read {
-    margin: 0px 0px 5px 5px;
-    height: 168px;
+    margin: 0px 0px 0px 5px;
     }
 }
 

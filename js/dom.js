@@ -8,27 +8,25 @@ function addBook() {
     const bookAuthor = document.getElementById("book-author").value;
     const bookYear = document.getElementById("book-year").value;
 
-    console.log("book name" + bookName);
-    console.log("book author" + bookAuthor);
-    console.log("book year" + bookYear);
+    console.log("book name " + bookName);
+    console.log("book author " + bookAuthor);
+    console.log("book year " + bookYear);
 
-    for (let i = 0; i < 10; i++) {
-        const book = makeListBook();
-        listBook.append(book);
-    }
+    const book = makeListBook(bookName, bookAuthor, bookYear);
+    listBook.append(book);
 
 }
 
-function makeListBook() {
+function makeListBook(title, author, year, isCompleted) {
     
     const bookTitle = document.createElement("h3");
-    bookTitle.innerText = "Zulham Petualang";
+    bookTitle.innerText = title;
 
     const bookAuthor = document.createElement("p");
-    bookAuthor.innerText = "Zulham Ari";
+    bookAuthor.innerText = author;
 
     const bookYear = document.createElement("p");
-    bookYear.innerText = "2021";
+    bookYear.innerText = year;
 
     const textContainer = document.createElement("div");
     textContainer.classList.add("inner")
@@ -37,6 +35,16 @@ function makeListBook() {
     const container = document.createElement("div");
     container.classList.add("item", "shadow")
     container.append(textContainer);
+
+    if (isCompleted) {
+        container.append(
+
+        );
+    } else {
+        container.append(
+
+        );
+    }
 
     return container;
 
