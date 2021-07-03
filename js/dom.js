@@ -1,8 +1,10 @@
-const LIST_BOOK_ID = "unread-book";
+const LIST_UNREAD_BOOK = "unread-book";
+const LIST_READ_BOOK = "read-book";
 
 function addBook() {
 
-    const listBook = document.getElementById(LIST_BOOK_ID);
+    const unreadBook = document.getElementById(LIST_UNREAD_BOOK);
+    const readBook = document.getElementById(LIST_READ_BOOK);
 
     const date = new Date().getTime();
     const bookId = `BOOK-${date}`;
@@ -11,7 +13,7 @@ function addBook() {
     const bookYear = document.getElementById("book-year").value;
 
     const book = makeListBook(bookId, bookName, bookAuthor, bookYear);
-    listBook.append(book);
+    unreadBook.append(book);
 
 }
 
@@ -39,14 +41,69 @@ function makeListBook(id, title, author, year, isCompleted) {
 
     if (isCompleted) {
         container.append(
-
+            undoButton(),
+            trashButton()
         );
     } else {
         container.append(
-
+            checkButton()
         );
     }
 
     return container;
 
+}
+
+function createButton(buttonTypeClass, eventListener) {
+    const button = document.createElement("button");
+    button.classList.add(buttonTypeClass);
+    button.addEventListener("click", function (event){
+        eventListener(event);     
+    });
+
+    return button;
+}
+
+function addBookToCompleted(bookElement) {
+    const bookTitle = taskElement.querySelector(".inner > h2").innerText;
+    const bookData = taskElement.querySelector(".inner > p").innerText;
+
+    const readBook = makeTodo(bookTitle, bookData, true);
+    const bookCompleted = document.getElementById(LIST_READ_BOOK);
+    bookCompleted.append(readBook);
+
+    bookElement.remove();
+}
+
+function undoBookToCompleted(bookElement) {
+    const bookTitle = taskElement.querySelector(".inner > h2").innerText;
+    const bookData = taskElement.querySelector(".inner > p").innerText;
+
+    const readBook = makeTodo(bookTitle, bookData, false);
+    const bookCompleted = document.getElementById(LIST_UNREAD_BOOK);
+    bookCompleted.append(readBook);
+
+    bookElement.remove();
+}
+
+function removeBookFromCompleted(bookElement) {
+    bookElement.remove();
+}
+
+function checkButton() {
+    return createButton("check-button", function (event) {
+        addBookToCompleted(event.target.parentElement);
+    });
+}
+
+function undoButton() {
+    return createButton("undo-button", function (event) {
+        undoTaskFromCompleted(event.target.parentElement);
+    });
+}
+
+function trashButton() {
+    return createButton("trash-button", function (event) {
+        removeBookFromCompleted(event.target.parentElement);
+    });
 }

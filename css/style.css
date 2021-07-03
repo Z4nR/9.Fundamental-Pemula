@@ -135,6 +135,20 @@ input[type=number] {
     margin-top: 5px;
 }
 
+.check-button {
+    background-image: url("../asset/check-outline.svg");
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    cursor: pointer;
+    border: none;
+}
+.check-button:hover {
+    background-image: url("../asset/check-solid.svg");
+    background-size: contain;
+}
+
 /*tag*/
 body {
     font-family: Arial, Helvetica, sans-serif;
