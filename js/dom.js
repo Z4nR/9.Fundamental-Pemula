@@ -29,6 +29,7 @@ function makeListBook(id, title, author, year, isCompleted) {
     bookAuthor.innerText = author;
 
     const bookYear = document.createElement("p");
+    bookYear.classList.add("year")
     bookYear.innerText = year;
 
     const textContainer = document.createElement("div");
@@ -65,10 +66,12 @@ function createButton(buttonTypeClass, eventListener) {
 }
 
 function addBookToCompleted(bookElement) {
-    const bookTitle = taskElement.querySelector(".inner > h2").innerText;
-    const bookData = taskElement.querySelector(".inner > p").innerText;
+    const bookID = bookElement.querySelector(".inner > h6").innerText;
+    const bookTitle = bookElement.querySelector(".inner > h3").innerText;
+    const bookAuthor = bookElement.querySelector(".inner > p").innerText;
+    const bookYear = bookElement.querySelector(".inner > .year").innerText;
 
-    const readBook = makeTodo(bookTitle, bookData, true);
+    const readBook = makeListBook(bookID, bookTitle, bookAuthor, bookYear, true);
     const bookCompleted = document.getElementById(LIST_READ_BOOK);
     bookCompleted.append(readBook);
 
@@ -76,10 +79,12 @@ function addBookToCompleted(bookElement) {
 }
 
 function undoBookToCompleted(bookElement) {
-    const bookTitle = taskElement.querySelector(".inner > h2").innerText;
-    const bookData = taskElement.querySelector(".inner > p").innerText;
+    const bookID = bookElement.querySelector(".inner > h6").innerText;
+    const bookTitle = bookElement.querySelector(".inner > h3").innerText;
+    const bookAuthor = bookElement.querySelector(".inner > p").innerText;
+    const bookYear = bookElement.querySelector(".inner > .year").innerText;
 
-    const readBook = makeTodo(bookTitle, bookData, false);
+    const readBook = makeListBook(bookID, bookTitle, bookAuthor, bookYear, false);
     const bookCompleted = document.getElementById(LIST_UNREAD_BOOK);
     bookCompleted.append(readBook);
 
@@ -98,7 +103,7 @@ function checkButton() {
 
 function undoButton() {
     return createButton("undo-button", function (event) {
-        undoTaskFromCompleted(event.target.parentElement);
+        undoBookToCompleted(event.target.parentElement);
     });
 }
 
