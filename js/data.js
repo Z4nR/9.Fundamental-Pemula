@@ -34,9 +34,9 @@ function updateDataToStorage() {
     }
 }
 
-function composeBookListObject(title, author, year, isCompleted) {
+function composeBookListObject(id, title, author, year, isCompleted) {
     return {
-        id: `BOOK-${new Date().getTime()}`,
+        id,
         title,
         author,
         year,

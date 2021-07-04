@@ -1,5 +1,6 @@
 const LIST_UNREAD_BOOK = "unread-book";
 const LIST_READ_BOOK = "read-book";
+const BOOK_ID = "bookID";
 
 function addBook() {
 
@@ -14,12 +15,18 @@ function addBook() {
     const bookCheck = document.querySelector('input[type=checkbox]').checked;
 
     const book = makeListBook(bookId, bookName, bookAuthor, bookYear, bookCheck);
+    const bookObject = composeBookListObject(bookId, bookName, bookAuthor, bookYear, bookCheck);
+
+    book[BOOK_ID] = bookObject.id;
+    bookList.push(bookObject);
 
     if (bookCheck) {
         readBook.append(book);
     } else {
         unreadBook.append(book);
     }
+
+    updateDataToStorage();
 
 }
 
@@ -78,10 +85,16 @@ function addBookToCompleted(bookElement) {
     const bookYear = bookElement.querySelector(".inner > .year").innerText;
 
     const readBook = makeListBook(bookID, bookTitle, bookAuthor, bookYear, true);
+    
+    const book = findBook(bookElement[BOOK_ID]);
+    book.isCompleted = true;
+    readBook[BOOK_ID] = book.id;
+
     const bookCompleted = document.getElementById(LIST_READ_BOOK);
     bookCompleted.append(readBook);
 
     bookElement.remove();
+    updateDataToStorage();
 }
 
 function undoBookToCompleted(bookElement) {
@@ -91,14 +104,25 @@ function undoBookToCompleted(bookElement) {
     const bookYear = bookElement.querySelector(".inner > .year").innerText;
 
     const readBook = makeListBook(bookID, bookTitle, bookAuthor, bookYear, false);
+    
+    const book = findBook(bookElement[BOOK_ID]);
+    book.isCompleted = false;
+    readBook[BOOK_ID] = book.id;
+
     const bookCompleted = document.getElementById(LIST_UNREAD_BOOK);
     bookCompleted.append(readBook);
 
     bookElement.remove();
+    updateDataToStorage();
 }
 
 function removeBookFromCompleted(bookElement) {
+
+    const bookPosition = findBookIndex(bookElement[BOOK_ID]);
+    bookList.splice(bookPosition, 1);
+
     bookElement.remove();
+    updateDataToStorage();
 }
 
 function checkButton() {
