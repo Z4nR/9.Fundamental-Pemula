@@ -7,4 +7,16 @@ document.addEventListener("DOMContentLoaded", function () {
         addBook();
     });
 
+    if (isStorageExist()) {
+        loadDataFromStorage();
+    }
+
 });
+
+document.addEventListener("onDataSaved", () => {
+    console.log("Data Berhasil DIsimpan");
+});
+
+document.addEventListener("onDataLoaded", () =>{
+    refreshDataFromBookList();
+})

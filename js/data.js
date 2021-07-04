@@ -63,3 +63,19 @@ function findBookIndex(bookID) {
     }
     return -1;
 }
+
+function refreshDataFromBookList() {
+    const unreadBook = document.getElementById(LIST_UNREAD_BOOK);
+    let readBook = document.getElementById(LIST_READ_BOOK);
+
+    for(book of bookList){
+        const bookList = makeListBook(book.id, book.title, book.author, book.year, book.isCompleted);
+        bookList[BOOK_ID] = book.id;
+
+        if (book.isCompleted) {
+            readBook.append(bookList);
+        } else {
+            unreadBook.append(bookList);
+        }
+    }
+}
