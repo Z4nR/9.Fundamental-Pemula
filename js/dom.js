@@ -11,9 +11,15 @@ function addBook() {
     const bookName = document.getElementById("book-name").value;
     const bookAuthor = document.getElementById("book-author").value;
     const bookYear = document.getElementById("book-year").value;
+    const bookCheck = document.querySelector("book-checkbox").checked;
 
-    const book = makeListBook(bookId, bookName, bookAuthor, bookYear);
-    unreadBook.append(book);
+    const book = makeListBook(bookId, bookName, bookAuthor, bookYear, bookCheck);
+
+    if (bookCheck) {
+        readBook.append(book);
+    } else {
+        unreadBook.append(book);
+    }
 
 }
 
