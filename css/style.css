@@ -1,14 +1,19 @@
 /*id*/
 #form {
     flex-grow: 6;
-    border-radius: 8px;
-    background-color: #F8F9FA;
+    display: flex;
+    flex-direction: column;
 }
 #list {
     flex-grow: 4;
     display: flex;
     flex-direction: column;
     margin: 0px;
+    padding: 16px;
+}
+
+#search-book {
+    margin-top: 10px;
 }
 
 /*class*/
@@ -21,7 +26,11 @@
 .box {
     flex-grow: 1;
     margin: 16px;
-    padding: 16px;
+}
+.input-form {
+    flex-grow: 1;
+    border-radius: 8px;
+    background-color: #F8F9FA;
 }
 .book-list {
     flex-grow: 1;

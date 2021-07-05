@@ -9,29 +9,41 @@
 </head>
 <body>
     <main class="container">
-        <div class="box shadow" id="form">
-            <h2 class="title-box">Input Form</h2>
-            <form class="form-data" action="#" id="form-box">
-                <div class="form-group form-title">
-                    <label for="book-name">Nama Buku :</label>
-                    <input type="text" id="book-name" name="book-name" required placeholder="Masukkan Nama Buku">
-                </div>
-                <div class="form-group form-title">
-                    <label for="book-author">Nama Pengarang :</label>
-                    <input type="text" id="book-author" name="book-author" required placeholder="Masukkan Nama Pengarang">
-                </div>
-                <div class="form-group form-title">
-                    <label for="book-year">Tahun Terbit :</label>
-                    <input type="number" id="book-year" name="book-year" required placeholder="Masukkan Tahun Terbit">
-                </div>
-                <div class="checkbox">
-                    <label for="book-checkbox">Selesai dibaca</label>
-                    <input id="book-checkbox" type="checkbox">
-                </div>
-                <input type="submit" value="Simpan" name="Submit" class="btn-submit">
-            </form>
-        </div>
-        <aside class="box" id="list">
+        <section class="box shadow" id="form">
+            <div class="input-form" id="new-book">
+                <h2 class="title-box">Input Form</h2>
+                <form class="form-data" action="#" id="form-box">
+                    <div class="form-group form-title">
+                        <label for="book-name">Nama Buku :</label>
+                        <input type="text" id="book-name" name="book-name" required placeholder="Masukkan Nama Buku">
+                    </div>
+                    <div class="form-group form-title">
+                        <label for="book-author">Nama Pengarang :</label>
+                        <input type="text" id="book-author" name="book-author" required placeholder="Masukkan Nama Pengarang">
+                    </div>
+                    <div class="form-group form-title">
+                        <label for="book-year">Tahun Terbit :</label>
+                        <input type="number" id="book-year" name="book-year" required placeholder="Masukkan Tahun Terbit">
+                    </div>
+                    <div class="checkbox">
+                        <label for="book-checkbox">Selesai dibaca</label>
+                        <input id="book-checkbox" type="checkbox">
+                    </div>
+                    <input type="submit" value="Simpan" name="Submit" class="btn-submit">
+                </form>
+            </div>
+            <div class="input-form" id="search-book">
+                <h2 class="title-box">Cari Buku</h2>
+                <form class="form-data" action="#" id="form-search">
+                    <div class="form-group form-title">
+                        <label for="search-box">Judul Buku :</label>
+                        <input type="text" id="search-box" placeholder="Masukkan Judul Buku Yang Dicari">
+                        <button class="btn-submit" type="submit">Cari</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="box" id="list">
             <div class="book-list shadow" id="unread">
                 <h2 class="title-box">Unread Book</h2>
                 <div class="list-container">
@@ -44,7 +56,7 @@
                     <div class="list-item" id="read-book"></div>
                 </div>
             </div>
-        </aside>
+        </section>
     </main>
     <footer>
         &copy; 2021, Zulham (Sans Storm)
