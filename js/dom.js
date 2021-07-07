@@ -3,23 +3,6 @@ const LIST_READ_BOOK = "read-book";
 const SEARCH_BOOK = "find-book"
 const BOOK_ID = "bookID";
 
-function searchBook() {
-
-    const search = document.getElementById(SEARCH_BOOK);
-
-    const bookName = document.getElementById("search-box").value;
-
-    const book = localStorage.getItem(STORAGE_KEY);
-    let data = JSON.parse(book);
-
-    const foundBook = data.filter(bookTitle => bookTitle.title == bookName);
-
-    search.append(foundBook);
-
-    console.log(foundBook);
-
-}
-
 function addBook() {
 
     const unreadBook = document.getElementById(LIST_UNREAD_BOOK);
@@ -43,6 +26,11 @@ function addBook() {
     } else {
         unreadBook.append(book);
     }
+
+    document.getElementById("book-name").value = '';
+    document.getElementById("book-author").value = '';
+    document.getElementById("book-year").value = '';
+    document.querySelector('input[type=checkbox]').checked = false;
 
     updateDataToStorage();
 
@@ -136,11 +124,71 @@ function undoBookToCompleted(bookElement) {
 
 function removeBookFromCompleted(bookElement) {
 
-    const bookPosition = findBookIndex(bookElement[BOOK_ID]);
-    bookList.splice(bookPosition, 1);
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#05a3ff',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const bookPosition = findBookIndex(bookElement[BOOK_ID]);
+            bookList.splice(bookPosition, 1);
 
-    bookElement.remove();
-    updateDataToStorage();
+            bookElement.remove();
+            updateDataToStorage();
+
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        }
+    })
+
+}
+
+function makeSearchList(books) {
+    const container = document.createElement("div");
+    container.classList.add("result-search")
+
+    books.forEach(book => {
+        const bookId = document.createElement("h6");
+        bookId.innerText = book.id;
+
+        const bookTitle = document.createElement("h3");
+        bookTitle.innerText = book.title;
+
+        const bookAuthor = document.createElement("p");
+        bookAuthor.innerText = book.author;
+
+        const bookYear = document.createElement("p");
+        bookYear.classList.add("year")
+        bookYear.innerText = book.year;
+
+        const textContainer = document.createElement("div");
+        textContainer.classList.add("inner-search")
+        textContainer.append(bookId, bookTitle, bookAuthor, bookYear);
+
+        textContainer.classList.add("item", "item-search", "shadow")
+        container.append(textContainer);
+    });
+    
+    return container;
+}
+
+function searchBookFromStorage() {
+    const search = document.getElementById(SEARCH_BOOK);
+    const bookName = document.getElementById("search-box").value;
+    const serializedData = localStorage.getItem(STORAGE_KEY);
+    let book = JSON.parse(serializedData);
+    const foundBook = book.filter(bookTitle => bookTitle.title == bookName);
+    const bookList = makeSearchList(foundBook);
+    search.innerHTML= ''
+    search.append(bookList);
+    document.getElementById("search-box").value = '';
 }
 
 function checkButton() {

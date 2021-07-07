@@ -38,11 +38,11 @@
                     <div class="form-group form-title">
                         <label for="search-box">Judul Buku :</label>
                         <input type="text" id="search-box" placeholder="Masukkan Judul Buku Yang Dicari">
-                        <button class="btn-submit" type="submit">Cari</button>
+                        <button onclick="searchBookFromStorage()" class="btn-submit" type="submit">Cari</button>
                     </div>
                 </form>
                 <div class="list-finding-book">
-                    <div class="list-item" id="find-book"></div>
+                    <div class="list-item-search" id="find-book"></div>
                 </div>
             </div>
         </section>
@@ -67,5 +67,6 @@
     <script src="js/data.js" type="text/javascript"></script>
     <script src="js/dom.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
