@@ -40,6 +40,12 @@
     padding: 10px;
     overflow: hidden;
 }
+.list-finding-book {
+    height: 100%;
+    overflow: scroll;
+    cursor: pointer;
+    user-select: none;
+}
 .list-container {
     height: 100%;
     overflow: scroll;

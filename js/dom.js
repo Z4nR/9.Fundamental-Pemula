@@ -1,6 +1,24 @@
 const LIST_UNREAD_BOOK = "unread-book";
 const LIST_READ_BOOK = "read-book";
+const SEARCH_BOOK = "find-book"
 const BOOK_ID = "bookID";
+
+function searchBook() {
+
+    const search = document.getElementById(SEARCH_BOOK);
+
+    const bookName = document.getElementById("search-box").value;
+
+    const book = localStorage.getItem(STORAGE_KEY);
+    let data = JSON.parse(book);
+
+    const foundBook = data.filter(bookTitle => bookTitle.title == bookName);
+
+    search.append(foundBook);
+
+    console.log(foundBook);
+
+}
 
 function addBook() {
 
@@ -15,7 +33,7 @@ function addBook() {
     const bookCheck = document.querySelector('input[type=checkbox]').checked;
 
     const book = makeListBook(bookId, bookName, bookAuthor, bookYear, bookCheck);
-    const bookObject = composeBookListObject(bookId, bookName, bookAuthor, bookYear, bookCheck);
+    const bookObject = composeBookObject(bookId, bookName, bookAuthor, bookYear, bookCheck);
 
     book[BOOK_ID] = bookObject.id;
     bookList.push(bookObject);
