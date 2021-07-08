@@ -66,7 +66,8 @@ function makeListBook(id, title, author, year, isCompleted) {
         );
     } else {
         container.append(
-            checkButton()
+            checkButton(),
+            trashButton()
         );
     }
 

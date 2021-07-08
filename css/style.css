@@ -16,7 +16,7 @@
     margin-top: 10px;
 }
 
-/*class*/
+/*Main Container*/
 .container {
     display: flex;
     width: auto;
@@ -40,31 +40,13 @@
     padding: 10px;
     overflow: hidden;
 }
-.list-finding-book {
-    height: 250px;
-    overflow: scroll;
-    cursor: pointer;
-    user-select: none;
-    margin-right: 10px;
-}
-.list-container {
-    height: 80%;
-    overflow: scroll;
-    cursor: pointer;
-    user-select: none;
-}
-.list-item {
-    margin-left: 5px;
-    height: auto;
-}
-.list-item-search {
-    margin-left: 15px;
-    height: auto;
-}
+
+/*Shadow*/
 .shadow {
     box-shadow: 0 5px 10px rgba(154, 160, 185, .05), 0 15px 40px rgba(166, 173, 201, .2);
 }
 
+/*Submit Button*/
 .btn-submit {
     border: none;
     border-radius: 10px;
@@ -80,12 +62,12 @@
     color: white;
 }
 
+/*Input Form*/
 input[type=text],
 input[type=number],
 .btn-submit:focus{
     outline: none;
 }
-
 input[type=text],
 input[type=number] {
     background: #F5F1FF;
@@ -96,7 +78,18 @@ input[type=number] {
     box-sizing: border-box;
     margin-bottom: 8px;
 }
+.checkbox {
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+}
+.checkbox label {
+    color: cornflowerblue;
+    font-weight: lighter;
+    margin-right: 10px;
+}
 
+/*Form Detail*/
 .form-data {
     display: flex;
     padding: 16px;
@@ -118,17 +111,7 @@ input[type=number] {
     margin: auto 0;
 }
 
-.checkbox {
-    margin: 12px 0;
-    display: flex;
-    align-items: center;
-}
-.checkbox label {
-    color: cornflowerblue;
-    font-weight: lighter;
-    margin-right: 10px;
-}
-
+/*Container Book Box*/
 .item {
     border-radius: 10px;
     margin-top: 16px;
@@ -136,6 +119,18 @@ input[type=number] {
     background: white;
     display: flex;
     align-items: center;
+}
+
+/*Book List*/
+.list-container {
+    height: 90%;
+    overflow: scroll;
+    cursor: pointer;
+    user-select: none;
+}
+.list-item {
+    margin-left: 5px;
+    height: auto;
 }
 .item > .inner h3 {
     margin-top: 5px;
@@ -150,6 +145,30 @@ input[type=number] {
     margin-bottom: 5px;
 }
 
+/*Search List*/
+.list-finding-book {
+    height: 250px;
+    overflow: scroll;
+    cursor: pointer;
+    user-select: none;
+    margin-right: 10px;
+}
+.list-item-search {
+    margin-left: 15px;
+    height: auto;
+}
+.result-search > .inner-search h3 {
+    margin-top: 5px;
+    margin-bottom: unset;
+}
+.result-search > .inner-search h6 {
+    margin-top: 5px;
+    margin-bottom: unset;
+}
+.result-search > .inner-search p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 .item-search {
     flex-direction: column;
 }
@@ -157,13 +176,20 @@ input[type=number] {
     display: block;
 }
 
+/*Form Title*/
 .title-box {
     margin-bottom: unset;
     text-align: center;
     margin-top: 15px;
-    height: 20%;
+}
+.title-box-list {
+    margin-bottom: unset;
+    text-align: center;
+    margin-top: 15px;
+    height: 10%;
 }
 
+/*Book List Button Function*/
 .check-button {
     background-image: url("../asset/check-outline.svg");
     background-size: contain;
@@ -177,7 +203,6 @@ input[type=number] {
     background-image: url("../asset/check-solid.svg");
     background-size: contain;
 }
-
 .trash-button{
     background: url('../asset/trash-outline.svg');
     background-size: contain;
@@ -191,7 +216,6 @@ input[type=number] {
     background: url('../asset/trash-fill.svg');
     background-size: contain;
 }
-
 .undo-button{
     background: url('../asset/undo-ouline.svg');
     background-size: contain;
@@ -205,7 +229,6 @@ input[type=number] {
     background: url('../asset/undo-ouline.svg');
     background-size: contain;
 }
-
 .check-button:focus, .trash-button {
     outline: none;
 }
