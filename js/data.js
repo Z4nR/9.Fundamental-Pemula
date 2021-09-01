@@ -34,10 +34,11 @@ function updateDataToStorage() {
     }
 }
 
-function composeBookObject(id, title, author, year, isCompleted) {
+function composeBookObject(id, title, page, author, year, isCompleted) {
     return {
         id,
         title,
+        page,
         author,
         year,
         isCompleted
@@ -69,7 +70,7 @@ function refreshDataFromBookList() {
     const readBook = document.getElementById(LIST_READ_BOOK);
 
     for(book of bookList){
-        const bookList = makeListBook(book.id, book.title, book.author, book.year, book.isCompleted);
+        const bookList = makeListBook(book.id, book.title, book.page, book.author, book.year, book.isCompleted);
         bookList[BOOK_ID] = book.id;
 
         if (book.isCompleted) {

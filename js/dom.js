@@ -11,12 +11,13 @@ function addBook() {
     const date = new Date().getTime();
     const bookId = `BOOK-${date}`;
     const bookName = document.getElementById("book-name").value;
+    const bookPage = document.getElementById("book-page").value;
     const bookAuthor = document.getElementById("book-author").value;
     const bookYear = document.getElementById("book-year").value;
     const bookCheck = document.querySelector('input[type=checkbox]').checked;
 
-    const book = makeListBook(bookId, bookName, bookAuthor, bookYear, bookCheck);
-    const bookObject = composeBookObject(bookId, bookName, bookAuthor, bookYear, bookCheck);
+    const book = makeListBook(bookId, bookName, bookPage, bookAuthor, bookYear, bookCheck);
+    const bookObject = composeBookObject(bookId, bookName, bookPage, bookAuthor, bookYear, bookCheck);
 
     book[BOOK_ID] = bookObject.id;
     bookList.push(bookObject);
@@ -28,6 +29,7 @@ function addBook() {
     }
 
     document.getElementById("book-name").value = '';
+    document.getElementById("book-page").value = '';
     document.getElementById("book-author").value = '';
     document.getElementById("book-year").value = '';
     document.querySelector('input[type=checkbox]').checked = false;
@@ -36,13 +38,16 @@ function addBook() {
 
 }
 
-function makeListBook(id, title, author, year, isCompleted) {
+function makeListBook(id, title, page, author, year, isCompleted) {
     
     const bookId = document.createElement("h6");
     bookId.innerText = id;
 
     const bookTitle = document.createElement("h3");
     bookTitle.innerText = title;
+
+    const bookPage = document.createElement("p");
+    bookPage.innerText = page;
 
     const bookAuthor = document.createElement("p");
     bookAuthor.innerText = author;
@@ -53,7 +58,7 @@ function makeListBook(id, title, author, year, isCompleted) {
 
     const textContainer = document.createElement("div");
     textContainer.classList.add("inner")
-    textContainer.append(bookId, bookTitle, bookAuthor, bookYear);
+    textContainer.append(bookId, bookTitle, bookPage, bookAuthor, bookYear);
 
     const container = document.createElement("div");
     container.classList.add("item", "shadow")
@@ -88,10 +93,11 @@ function createButton(buttonTypeClass, eventListener) {
 function addBookToCompleted(bookElement) {
     const bookID = bookElement.querySelector(".inner > h6").innerText;
     const bookTitle = bookElement.querySelector(".inner > h3").innerText;
+    const bookPage = bookElement.querySelector(".inner > p").innerText;
     const bookAuthor = bookElement.querySelector(".inner > p").innerText;
     const bookYear = bookElement.querySelector(".inner > .year").innerText;
 
-    const readBook = makeListBook(bookID, bookTitle, bookAuthor, bookYear, true);
+    const readBook = makeListBook(bookID, bookTitle, bookPage, bookAuthor, bookYear, true);
     
     const book = findBook(bookElement[BOOK_ID]);
     book.isCompleted = true;
@@ -107,10 +113,11 @@ function addBookToCompleted(bookElement) {
 function undoBookToCompleted(bookElement) {
     const bookID = bookElement.querySelector(".inner > h6").innerText;
     const bookTitle = bookElement.querySelector(".inner > h3").innerText;
+    const bookPage = bookElement.querySelector(".inner > p").innerText;
     const bookAuthor = bookElement.querySelector(".inner > p").innerText;
     const bookYear = bookElement.querySelector(".inner > .year").innerText;
 
-    const readBook = makeListBook(bookID, bookTitle, bookAuthor, bookYear, false);
+    const readBook = makeListBook(bookID, bookTitle, bookPage, bookAuthor, bookYear, false);
     
     const book = findBook(bookElement[BOOK_ID]);
     book.isCompleted = false;
@@ -162,6 +169,9 @@ function makeSearchList(books) {
         const bookTitle = document.createElement("h3");
         bookTitle.innerText = book.title;
 
+        const bookPage = document.createElement("p");
+        bookPage.innerText = book.page;
+        
         const bookAuthor = document.createElement("p");
         bookAuthor.innerText = book.author;
 
@@ -171,7 +181,7 @@ function makeSearchList(books) {
 
         const textContainer = document.createElement("div");
         textContainer.classList.add("inner-search")
-        textContainer.append(bookId, bookTitle, bookAuthor, bookYear);
+        textContainer.append(bookId, bookTitle, bookPage, bookAuthor, bookYear);
 
         textContainer.classList.add("item", "item-search", "shadow")
         container.append(textContainer);
