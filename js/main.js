@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("onDataSaved", () => {
-    console.log("Data Berhasil DIsimpan");
+    console.log("Data Berhasil Disimpan");
 });
 
 document.addEventListener("onDataLoaded", () =>{

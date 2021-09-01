@@ -115,7 +115,12 @@ function addBookToCompleted(bookElement) {
 }
 
 function editDataBook(bookElement) {
-    
+    const book = findBook(bookElement[BOOK_ID]);
+
+    document.getElementById("book-name").innerText = book.title;
+    document.getElementById("book-page").innerText = book.page;
+    document.getElementById("book-author").innerText = book.author;
+    document.getElementById("book-year").innerText = book.year;
 }
 
 function undoBookToCompleted(bookElement) {
