@@ -11,7 +11,7 @@
     <main class="container">
         <section class="box" id="form">
             <div class="input-form shadow" id="new-book">
-                <h2 class="title-box">Input Form</h2>
+                <h2 class="title-box">Masukan Data Buku</h2>
                 <form class="form-data" action="#" id="form-box">
                     <div class="form-group form-title">
                         <label for="book-name">Nama Buku :</label>
@@ -42,6 +42,10 @@
                     <div class="form-group form-title">
                         <label for="search-box">Judul Buku :</label>
                         <input type="text" id="search-box" placeholder="Masukkan Judul Buku Yang Dicari">
+                        <div class="checkbox">
+                            <label for="book-checkbox">Selesai dibaca</label>
+                            <input id="search-checkbox" type="checkbox">
+                        </div>
                         <button onclick="searchBookFromStorage()" class="btn-submit" type="submit">Cari</button>
                     </div>
                 </form>
@@ -52,13 +56,13 @@
         </section>
         <section class="box" id="list">
             <div class="book-list shadow" id="unread">
-                <h2 class="title-box-list">Unread Book</h2>
+                <h2 class="title-box-list">Masih Dibaca</h2>
                 <div class="list-container">
                     <div class="list-item" id="unread-book"></div>
                 </div>
             </div>
             <div class="book-list shadow" id="read">
-                <h2 class="title-box-list">Readed Book</h2>
+                <h2 class="title-box-list">Selesai Dibaca</h2>
                 <div class="list-container">
                     <div class="list-item" id="read-book"></div>
                 </div>

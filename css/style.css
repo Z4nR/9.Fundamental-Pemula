@@ -203,6 +203,19 @@ input[type=number] {
     background-image: url("../asset/check-solid.svg");
     background-size: contain;
 }
+.edit-button {
+    background-image: url("../asset/edit-outline.svg");
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    margin-left: 16px;
+    cursor: pointer;
+    border: none;
+}
+.edit-button:hover {
+    background-image: url("../asset/edit-solid.svg");
+    background-size: contain;
+}
 .trash-button{
     background: url('../asset/trash-outline.svg');
     background-size: contain;

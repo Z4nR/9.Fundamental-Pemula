@@ -46,10 +46,13 @@ function makeListBook(id, title, page, author, year, isCompleted) {
     const bookTitle = document.createElement("h3");
     bookTitle.innerText = title;
 
+    const pageTitle = "Halaman terakhir : "
     const bookPage = document.createElement("p");
-    bookPage.innerText = page;
+    bookPage.classList.add("page")
+    bookPage.innerText = pageTitle + page;
 
     const bookAuthor = document.createElement("p");
+    bookAuthor.classList.add("author")
     bookAuthor.innerText = author;
 
     const bookYear = document.createElement("p");
@@ -58,20 +61,22 @@ function makeListBook(id, title, page, author, year, isCompleted) {
 
     const textContainer = document.createElement("div");
     textContainer.classList.add("inner")
-    textContainer.append(bookId, bookTitle, bookPage, bookAuthor, bookYear);
 
     const container = document.createElement("div");
     container.classList.add("item", "shadow")
     container.append(textContainer);
 
     if (isCompleted) {
+        textContainer.append(bookId, bookTitle, "", bookAuthor, bookYear);
         container.append(
             undoButton(),
             trashButton()
         );
     } else {
+        textContainer.append(bookId, bookTitle, bookPage, bookAuthor, bookYear);
         container.append(
             checkButton(),
+            editButton(),
             trashButton()
         );
     }
@@ -93,11 +98,10 @@ function createButton(buttonTypeClass, eventListener) {
 function addBookToCompleted(bookElement) {
     const bookID = bookElement.querySelector(".inner > h6").innerText;
     const bookTitle = bookElement.querySelector(".inner > h3").innerText;
-    const bookPage = bookElement.querySelector(".inner > p").innerText;
-    const bookAuthor = bookElement.querySelector(".inner > p").innerText;
+    const bookAuthor = bookElement.querySelector(".inner > .author").innerText;
     const bookYear = bookElement.querySelector(".inner > .year").innerText;
 
-    const readBook = makeListBook(bookID, bookTitle, bookPage, bookAuthor, bookYear, true);
+    const readBook = makeListBook(bookID, bookTitle, "", bookAuthor, bookYear, true);
     
     const book = findBook(bookElement[BOOK_ID]);
     book.isCompleted = true;
@@ -110,16 +114,21 @@ function addBookToCompleted(bookElement) {
     updateDataToStorage();
 }
 
+function editDataBook(bookElement) {
+    
+}
+
 function undoBookToCompleted(bookElement) {
+    const book = findBook(bookElement[BOOK_ID]);
+
     const bookID = bookElement.querySelector(".inner > h6").innerText;
     const bookTitle = bookElement.querySelector(".inner > h3").innerText;
-    const bookPage = bookElement.querySelector(".inner > p").innerText;
-    const bookAuthor = bookElement.querySelector(".inner > p").innerText;
+    const bookPage = book.page;
+    const bookAuthor = bookElement.querySelector(".inner > .author").innerText;
     const bookYear = bookElement.querySelector(".inner > .year").innerText;
 
     const readBook = makeListBook(bookID, bookTitle, bookPage, bookAuthor, bookYear, false);
     
-    const book = findBook(bookElement[BOOK_ID]);
     book.isCompleted = false;
     readBook[BOOK_ID] = book.id;
 
@@ -181,10 +190,15 @@ function makeSearchList(books) {
 
         const textContainer = document.createElement("div");
         textContainer.classList.add("inner-search")
-        textContainer.append(bookId, bookTitle, bookPage, bookAuthor, bookYear);
 
         textContainer.classList.add("item", "item-search", "shadow")
         container.append(textContainer);
+
+        if (book.isCompleted) {
+            textContainer.append(bookId, bookTitle, bookAuthor, bookYear);
+        } else {
+            textContainer.append(bookId, bookTitle, bookPage, bookAuthor, bookYear);
+        }
     });
     
     return container;
@@ -193,13 +207,15 @@ function makeSearchList(books) {
 function searchBookFromStorage() {
     const search = document.getElementById(SEARCH_BOOK);
     const bookName = document.getElementById("search-box").value;
+    const bookCheck = document.getElementById("search-checkbox").checked;
     const serializedData = localStorage.getItem(STORAGE_KEY);
     let book = JSON.parse(serializedData);
-    const foundBook = book.filter(bookTitle => bookTitle.title == bookName);
+    const foundBook = book.filter(bookTitle => bookTitle.title == bookName && bookTitle.isCompleted == bookCheck);
     const bookList = makeSearchList(foundBook);
     search.innerHTML= ''
     search.append(bookList);
     document.getElementById("search-box").value = '';
+    document.getElementById("search-checkbox").checked = false;
 }
 
 function checkButton() {
@@ -217,5 +233,11 @@ function undoButton() {
 function trashButton() {
     return createButton("trash-button", function (event) {
         removeBookFromCompleted(event.target.parentElement);
+    });
+}
+
+function editButton() {
+    return createButton("edit-button", function (event) {
+        editDataBook(event.target.parentElement);
     });
 }
