@@ -117,10 +117,14 @@ function addBookToCompleted(bookElement) {
 function editDataBook(bookElement) {
     const book = findBook(bookElement[BOOK_ID]);
 
-    document.getElementById("book-name").innerText = book.title;
-    document.getElementById("book-page").innerText = book.page;
-    document.getElementById("book-author").innerText = book.author;
-    document.getElementById("book-year").innerText = book.year;
+    document.getElementById("book-name").value = book.title;
+    document.getElementById("book-page").value = book.page;
+    document.getElementById("book-author").value = book.author;
+    document.getElementById("book-year").value = book.year;
+    document.querySelector('input[type=checkbox]').checked = book.isCompleted;
+
+    bookElement.remove();
+    updateDataToStorage();
 }
 
 function undoBookToCompleted(bookElement) {

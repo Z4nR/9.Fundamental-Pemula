@@ -16,6 +16,20 @@ function saveData() {
     document.dispatchEvent(new Event("onDataSaved"));
 }
 
+function updateData(bookID, newTitle, newPage, newAuthor, newYear, newIsCompleted) {
+    bookList.every( book => {
+        if (book.id == bookID ) {
+            book.title = newTitle;
+            book.page = newPage;
+            book.author = newAuthor;
+            book.year = newYear;
+            book.isCompleted = newIsCompleted;
+            return false
+        }
+        return true
+    })
+}
+
 function loadDataFromStorage() {
     const serializedData = localStorage.getItem(STORAGE_KEY);
 
@@ -30,7 +44,11 @@ function loadDataFromStorage() {
 
 function updateDataToStorage() {
     if (isStorageExist()) {
-        saveData();
+        if (findBook(bookID)) {
+            updateData(bookID, newTitle, newPage, newAuthor, newYear, newIsCompleted);
+        } else {
+            saveData();
+        }
     }
 }
 
