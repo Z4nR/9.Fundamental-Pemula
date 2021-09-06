@@ -114,7 +114,7 @@ function addBookToCompleted(bookElement) {
     updateDataToStorage();
 }
 
-function editDataBook(bookElement) {
+function showEditDataBook(bookElement) {
     const book = findBook(bookElement[BOOK_ID]);
 
     document.getElementById("book-name").value = book.title;
@@ -122,9 +122,16 @@ function editDataBook(bookElement) {
     document.getElementById("book-author").value = book.author;
     document.getElementById("book-year").value = book.year;
     document.querySelector('input[type=checkbox]').checked = book.isCompleted;
+}
 
-    bookElement.remove();
-    updateDataToStorage();
+function editBookData(bookElement) {
+    const book = findBook(bookElement[BOOK_ID]);
+    const title = document.getElementById("book-name").value;
+    const page = document.getElementById("book-page").value;
+    const author = document.getElementById("book-author").value;
+    const year = document.getElementById("book-year").value;
+    const check = document.querySelector('input[type=checkbox]').checked;
+    updateData(book, title, page, author, year, check);
 }
 
 function undoBookToCompleted(bookElement) {
@@ -247,6 +254,6 @@ function trashButton() {
 
 function editButton() {
     return createButton("edit-button", function (event) {
-        editDataBook(event.target.parentElement);
+        showEditDataBook(event.target.parentElement);
     });
 }
