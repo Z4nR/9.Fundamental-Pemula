@@ -44,11 +44,7 @@ function loadDataFromStorage() {
 
 function updateDataToStorage() {
     if (isStorageExist()) {
-        if (findBook(bookID)) {
-            updateData(bookID, newTitle, newPage, newAuthor, newYear, newIsCompleted);
-        } else {
-            saveData();
-        }
+        saveData();
     }
 }
 

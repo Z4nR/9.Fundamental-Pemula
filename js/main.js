@@ -1,10 +1,16 @@
+let isEditing = false
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const submitForm = document.getElementById("form-box")
 
-    submitForm.addEventListener("submit", function (e){
+    submitForm.addEventListener("submit", function (e, bookElement){
         e.preventDefault();
-        addBook();
+        if (isEditing == true) {
+            editBookData(bookElement);
+        } else {
+            addBook();
+        }
     });
 
     if (isStorageExist()) {
