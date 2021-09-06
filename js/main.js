@@ -4,10 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const submitForm = document.getElementById("form-box")
 
-    submitForm.addEventListener("submit", function (e, bookElement){
+    submitForm.addEventListener("submit", function (e){
         e.preventDefault();
         if (isEditing == true) {
-            editBookData(bookElement);
+            editBookData();
         } else {
             addBook();
         }

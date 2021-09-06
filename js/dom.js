@@ -124,8 +124,8 @@ function showEditDataBook(bookElement) {
     document.querySelector('input[type=checkbox]').checked = book.isCompleted;
 }
 
-function editBookData(bookElement) {
-    const book = findBook(bookElement[BOOK_ID]);
+function editBookData() {
+    const book = findBook(BOOK_ID);
     const title = document.getElementById("book-name").value;
     const page = document.getElementById("book-page").value;
     const author = document.getElementById("book-author").value;
@@ -158,13 +158,13 @@ function undoBookToCompleted(bookElement) {
 function removeBookFromCompleted(bookElement) {
 
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Serius?',
+        text: "Tindakan ini tidak bisa diulangi!!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#05a3ff',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Aku ingin menghapusnya!'
     }).then((result) => {
         if (result.isConfirmed) {
             const bookPosition = findBookIndex(bookElement[BOOK_ID]);
@@ -174,8 +174,8 @@ function removeBookFromCompleted(bookElement) {
             updateDataToStorage();
 
             Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                'Terhapus!',
+                'Selamat bukumu sudah hilang.',
                 'success'
             )
         }
@@ -227,9 +227,20 @@ function searchBookFromStorage() {
     const serializedData = localStorage.getItem(STORAGE_KEY);
     let book = JSON.parse(serializedData);
     const foundBook = book.filter(bookTitle => bookTitle.title == bookName && bookTitle.isCompleted == bookCheck);
-    const bookList = makeSearchList(foundBook);
-    search.innerHTML= ''
-    search.append(bookList);
+
+    if (foundBook) {
+        const bookList = makeSearchList(foundBook);
+        search.innerHTML = '';
+        search.append(bookList);
+    } else {
+        search.innerHTML = '';
+        Swal.fire(
+            'Bukumu tidak ada?',
+            'Mungkin kamu lupa, ayo cari lagi!!',
+            'question'
+            )
+    }
+    
     document.getElementById("search-box").value = '';
     document.getElementById("search-checkbox").checked = false;
 }
@@ -255,5 +266,6 @@ function trashButton() {
 function editButton() {
     return createButton("edit-button", function (event) {
         showEditDataBook(event.target.parentElement);
+        isEditing = true;
     });
 }
