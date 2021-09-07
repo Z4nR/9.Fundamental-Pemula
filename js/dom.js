@@ -135,7 +135,7 @@ function editBookData() {
     const check = document.querySelector('input[type=checkbox]').checked;
     
     books.every(book => {
-        if (book.id == editedBook.id) {
+        if (book.id == editedBook) {
             book.title = title;
             book.page = page;
             book.author = author;
@@ -145,6 +145,8 @@ function editBookData() {
         }
         return true
     })
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(bookList));
 }
 
 function undoBookToCompleted(bookElement) {

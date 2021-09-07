@@ -26,6 +26,8 @@ function loadDataFromStorage() {
     }
 
     document.dispatchEvent(new Event("onDataLoaded"));
+
+    return data;
 }
 
 function updateDataToStorage() {
