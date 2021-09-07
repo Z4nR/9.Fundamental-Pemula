@@ -125,13 +125,26 @@ function showEditDataBook(bookElement) {
 }
 
 function editBookData() {
-    const book = findBook(BOOK_ID);
+    const findBookId = findBook(BOOK_ID);
+    editedBook = findBookId;
+    const books = loadDataFromStorage();
     const title = document.getElementById("book-name").value;
     const page = document.getElementById("book-page").value;
     const author = document.getElementById("book-author").value;
     const year = document.getElementById("book-year").value;
     const check = document.querySelector('input[type=checkbox]').checked;
-    updateData(book, title, page, author, year, check);
+    
+    books.every(book => {
+        if (book.id == editedBook.id) {
+            book.title = title;
+            book.page = page;
+            book.author = author;
+            book.year = year;
+            book.isCompleted = check;
+            return false
+        }
+        return true
+    })
 }
 
 function undoBookToCompleted(bookElement) {

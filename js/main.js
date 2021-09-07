@@ -1,4 +1,5 @@
-let isEditing = false
+let isEditing = false;
+let editedBook = null;
 
 document.addEventListener("DOMContentLoaded", function () {
 
