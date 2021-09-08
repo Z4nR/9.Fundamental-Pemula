@@ -116,6 +116,7 @@ function addBookToCompleted(bookElement) {
 
 function showEditDataBook(bookElement) {
     const book = findBook(bookElement[BOOK_ID]);
+    editedBook = book;
 
     document.getElementById("book-name").value = book.title;
     document.getElementById("book-page").value = book.page;
@@ -125,17 +126,14 @@ function showEditDataBook(bookElement) {
 }
 
 function editBookData() {
-    const findBookId = findBook(BOOK_ID);
-    editedBook = findBookId;
-    const books = loadDataFromStorage();
     const title = document.getElementById("book-name").value;
     const page = document.getElementById("book-page").value;
     const author = document.getElementById("book-author").value;
     const year = document.getElementById("book-year").value;
     const check = document.querySelector('input[type=checkbox]').checked;
     
-    books.every(book => {
-        if (book.id == editedBook) {
+    bookList.every(book => {
+        if (book.id == editedBook.id) {
             book.title = title;
             book.page = page;
             book.author = author;
@@ -146,7 +144,7 @@ function editBookData() {
         return true
     })
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(bookList));
+    updateDataToStorage();
 }
 
 function undoBookToCompleted(bookElement) {
