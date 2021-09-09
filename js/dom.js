@@ -146,9 +146,14 @@ function editBookData() {
     })
 
     updateDataToStorage();
-}
+    refreshDataFromBookList();
 
-refreshDataFromBookList();
+    document.getElementById("book-name").value = '';
+    document.getElementById("book-page").value = '';
+    document.getElementById("book-author").value = '';
+    document.getElementById("book-year").value = '';
+    document.querySelector('input[type=checkbox]').checked = false;
+}
 
 function undoBookToCompleted(bookElement) {
     const book = findBook(bookElement[BOOK_ID]);
@@ -244,7 +249,7 @@ function searchBookFromStorage() {
     let book = JSON.parse(serializedData);
     const foundBook = book.filter(bookTitle => bookTitle.title == bookName && bookTitle.isCompleted == bookCheck);
 
-    if (foundBook) {
+    if (foundBook.length) {
         const bookList = makeSearchList(foundBook);
         search.innerHTML = '';
         search.append(bookList);

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         if (isEditing == true) {
             editBookData();
+            isEditing = false;
         } else {
             addBook();
         }
