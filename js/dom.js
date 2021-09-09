@@ -70,6 +70,7 @@ function makeListBook(id, title, page, author, year, isCompleted) {
         textContainer.append(bookId, bookTitle, "", bookAuthor, bookYear);
         container.append(
             undoButton(),
+            editButton(),
             trashButton()
         );
     } else {
@@ -146,6 +147,8 @@ function editBookData() {
 
     updateDataToStorage();
 }
+
+refreshDataFromBookList();
 
 function undoBookToCompleted(bookElement) {
     const book = findBook(bookElement[BOOK_ID]);
