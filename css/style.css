@@ -103,7 +103,7 @@ input[type=number] {
 }
 .form-group label {
     margin-bottom: 4px;
-    font-size: 18;
+    font-size: 18px;
     font-weight: lighter;
     color: cornflowerblue;
 }
